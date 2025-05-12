@@ -9,7 +9,7 @@ const Navbar: FC = () => {
                 <div>
                     <Link to="/">
                         <div className="w-[64px] h-[64px] gap-[32px]">
-                            <img className="w-[64px] h-[64px]" src="images/logo.png" alt="Logotip" />
+                            <img className="w-[64px] h-[64px]" src="logotypes/logo.png" alt="Logotip" />
                         </div>
                     </Link>
                 </div>
@@ -19,7 +19,7 @@ const Navbar: FC = () => {
                     </Link>
                     <p> or </p>
                     <Link to="/signin">
-                        <button className="rounded-[16px] bg-black text-white py-2 px-4">Sign Up</button>
+                        <button className="rounded-[16px] bg-[#272D2D] text-white py-2 px-4">Sign Up</button>
                     </Link>
                 </div>
             </div>
