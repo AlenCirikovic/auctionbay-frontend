@@ -1,7 +1,7 @@
-import type { FC } from "react"
+ import type { FC } from "react"
 import { Link } from "react-router"
 
-const Login: FC = () => {
+const ForgotPassword: FC = () => {
     return (
         <>
             <div className="flex flex-row w-[1440px] h-[1024px] top-[1364px] left-[192px] justify-center">
@@ -68,4 +68,4 @@ const Login: FC = () => {
     )
 }
 
-export default Login
+export default ForgotPassword

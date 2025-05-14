@@ -1,8 +1,9 @@
 import type { FC } from "react";
-import { Link } from "react-router";
+import { Link} from "react-router";
+
 
 const Navbar: FC = () => {
-
+    
     return (
         <>
             <div className="flex flex-row h-[104px] justify-between pt-[20px] pr-[32px] pb-[20px] pl-[32px] items-center">

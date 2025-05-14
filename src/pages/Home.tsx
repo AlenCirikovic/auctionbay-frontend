@@ -1,11 +1,9 @@
 import type { FC } from "react";
-import Navbar from "../components/Navbar";
 import { Link } from "react-router";
 
 const Home: FC = () => {
     return (
         <>
-            <Navbar />
             <div className="flex flex-col justify-center items-center text-center">
 
                 <div className="w-[715px] h-[133px] text-center justify-items-normal gap-[8px]">
