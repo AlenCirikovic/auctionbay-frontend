@@ -9,6 +9,7 @@ import AuthLayout from './components/layouts/AuthLayout.tsx'
 import ProtectedRoute from './routes/ProtectedRoute.tsx'
 import Home from './pages/Home.tsx'
 import MainLayout from './components/layouts/MainLayout.tsx'
+import ProfileSettings from './components/popups/ProfileSettings.tsx'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -20,8 +21,8 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <Home /> },
           {
-            path: 'dashboard',
-            element: <ProtectedRoute />,
+            path: 'profilesettings',
+            element: <ProfileSettings />,
             children: [],
           },
         ],

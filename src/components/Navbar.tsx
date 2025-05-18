@@ -1,16 +1,38 @@
 import { useState, type FC } from "react";
 import { Link, useNavigate } from "react-router";
 import authStore from "../stores/auth.store";
-import ProfileDropdown from "./popups/Initial";
+import ProfileDropdown from "./popups/ProfileDropdown";
+import axios from "axios";
 
 const Navbar: FC = () => {
     const navigate = useNavigate();
     const [activeDiv, setActiveDiv] = useState(0);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [apiError, setApiError] = useState('')
+    const [showError, setShowError] = useState(false)
 
-    const handleLogout = () => {
-        authStore.signout();
-        navigate("/login");
+    const handleLogout = async () => {
+        try {
+            const response = await axios.post('http://localhost:3000/auth/signout')
+            if (response.data?.statusCode === 400) {
+                setApiError(response.data.message)
+                setShowError(true)
+            } else if (response.data?.statusCode === 500) {
+                setApiError(response.data.message)
+                setShowError(true)
+            } else {
+                authStore.signout()
+                navigate('/')
+            }
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                setApiError(error.response?.data?.message || 'Signout failed')
+                setShowError(true)
+            } else {
+                setApiError('An unexpected error occurred')
+                setShowError(true)
+            }
+        }
     };
 
     const toggleDropdown = () => {
@@ -22,6 +44,13 @@ const Navbar: FC = () => {
     return (
         <>
             <div className="flex flex-row h-[104px] justify-between pt-[20px] pr-[32px] pb-[20px] pl-[32px] items-center">
+                                        <div className="flex w-[347px] h-[64px] gap-[32px]">
+                            <Link to="/">
+                                <div className="w-[64px] h-[64px] gap-[32px]">
+                                    <img className="w-[64px] h-[64px]" src="logotypes/logo.png" alt="Logotip" />
+                                </div>
+                            </Link>
+                        </div>
                 {authStore.user ? (
                     <>
                         <div className="flex w-[347px] h-[64px] gap-[32px]">
@@ -92,6 +121,7 @@ const Navbar: FC = () => {
                 )}
             </div>
         </>
+
     )
 }
 
