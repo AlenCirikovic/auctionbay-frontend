@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import { Link } from "react-router";
+import AuctionCard from "../components/cards/AuctionCard";
 
 const Home: FC = () => {
     return (
@@ -19,6 +20,7 @@ const Home: FC = () => {
                 <div className="w-[1144px] h-[812.39px] rounded-[32px] border-[#272D2D] border-solid border-[8px]">
                     <img className="h-[100%] w-[100%]" src="images/Auctions.png" alt="Auctions iamge" />
                 </div>
+
             </div>
         </>
     )

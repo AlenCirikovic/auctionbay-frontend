@@ -3,6 +3,9 @@ import { Link, useNavigate } from "react-router";
 import authStore from "../stores/auth.store";
 import ProfileDropdown from "./popups/ProfileDropdown";
 import axios from "axios";
+import ProfileSettings from "./popups/ProfileSettings";
+import ChangePassword from "./popups/ChangePassword";
+import ChangeAvatar from "./popups/ChangeAvatar";
 
 const Navbar: FC = () => {
     const navigate = useNavigate();
@@ -10,6 +13,10 @@ const Navbar: FC = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [apiError, setApiError] = useState('')
     const [showError, setShowError] = useState(false)
+    const [showProfileSettings, setShowProfileSettings] = useState(false);
+    const [showChangePassword, setShowChangePassword] = useState(false);
+    const [showChangeAvatar, setShowChangeAvatar] = useState(false);
+
 
     const handleLogout = async () => {
         try {
@@ -44,21 +51,14 @@ const Navbar: FC = () => {
     return (
         <>
             <div className="flex flex-row h-[104px] justify-between pt-[20px] pr-[32px] pb-[20px] pl-[32px] items-center">
-                                        <div className="flex w-[347px] h-[64px] gap-[32px]">
-                            <Link to="/">
-                                <div className="w-[64px] h-[64px] gap-[32px]">
-                                    <img className="w-[64px] h-[64px]" src="logotypes/logo.png" alt="Logotip" />
-                                </div>
-                            </Link>
-                        </div>
+                <Link to="/">
+                    <div className="w-[64px] h-[64px] gap-[32px]">
+                        <img className="w-[64px] h-[64px]" src="logotypes/logo.png" alt="Logotip" />
+                    </div>
+                </Link>
                 {authStore.user ? (
                     <>
                         <div className="flex w-[347px] h-[64px] gap-[32px]">
-                            <Link to="/">
-                                <div className="w-[64px] h-[64px] gap-[32px]">
-                                    <img className="w-[64px] h-[64px]" src="logotypes/logo.png" alt="Logotip" />
-                                </div>
-                            </Link>
                             <div className="flex w-[251px] h-[64px] rounded-[32px] p-[4px] gap-[8px]">
                                 <div className={`flex w-[126px] h-[56px] rounded-[32px] pt-[8px] pr-[16px] pb-[8px] pl-[16px] gap-[4px] justify-center items-center ${activeDiv === 1 ? 'bg-[#272D2D] text-white' : 'bg-white text-black'}`} onClick={() => setActiveDiv(1)}>
                                     <img className="w-[24px] h-[24px]" src="icons/Home.svg" alt="Home" />
@@ -95,20 +95,53 @@ const Navbar: FC = () => {
                                 <img className="w-full h-full object-cover" src="icons/avatar.png" alt="avatar" />
                             </button>
 
-                            {/* Dropdown positioned absolutely within the navbar */}
                             <ProfileDropdown
                                 isOpen={isDropdownOpen}
                                 onClose={() => setIsDropdownOpen(false)}
                                 onLogout={handleLogout}
+                                onProfileSettings={() => {
+                                    setIsDropdownOpen(false);
+                                    setShowProfileSettings(true);
+                                }}
                             />
+                            {showProfileSettings && (
+                                <div
+                                    className="fixed inset-0 flex items-center justify-center z-50"
+                                    style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }} // 30% opacity black
+                                >
+                                    <ProfileSettings onChangeAvatar={() => { setShowChangeAvatar(true); setShowProfileSettings(false); }}  
+                                    onChangePassword={() => { setShowChangePassword(true); setShowProfileSettings(false); }} 
+                                    onClose={() => setShowProfileSettings(false)} />
+                                </div>
+                            )}
+                            {showChangeAvatar && (
+                                <div>
+                                    <div
+                                        className="fixed inset-0 flex items-center justify-center z-50"
+                                        style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }} // 30% opacity black
+                                    >
+                                        <ChangeAvatar onClose={() => setShowChangeAvatar(false)} />
+                                    </div>
+                                </div>
+                            )}
+
+                            {showChangePassword && (
+                                <div>
+                                    <div
+                                        className="fixed inset-0 flex items-center justify-center z-50"
+                                        style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }} // 30% opacity black
+                                    >
+                                        <ChangePassword onClose={() => setShowChangePassword(false)} />
+                                    </div>
+                                </div>
+                            )}
+
                         </div>
-
                     </>
-
-
                 ) : (
                     <>
                         <div className="flex flex-row gap-[8px] h-[40px] w-[172px] items-center">
+
                             <Link to="/login">
                                 <p className="font-bold">Log in</p>
                             </Link>
@@ -120,8 +153,9 @@ const Navbar: FC = () => {
                     </>
                 )}
             </div>
-        </>
 
+
+        </>
     )
 }
 

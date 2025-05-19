@@ -21,9 +21,9 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <Home /> },
           {
-            path: 'profilesettings',
-            element: <ProfileSettings />,
-            children: [],
+            // path: 'profilesettings',
+            // element: <ProfileSettings />,
+            // children: [],
           },
         ],
       },
