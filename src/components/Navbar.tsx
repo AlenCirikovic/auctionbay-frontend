@@ -6,6 +6,7 @@ import axios from "axios";
 import ProfileSettings from "./popups/profile_modals/ProfileSettings";
 import ChangePassword from "./popups/profile_modals/ChangePassword";
 import ChangeAvatar from "./popups/profile_modals/ChangeAvatar";
+import AddAuction from "./popups/auction_modals/AddAuction";
 
 const Navbar: FC = () => {
     const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Navbar: FC = () => {
     const [showProfileSettings, setShowProfileSettings] = useState(false);
     const [showChangePassword, setShowChangePassword] = useState(false);
     const [showChangeAvatar, setShowChangeAvatar] = useState(false);
-
+    const [showAddAuction,setShowAddAuction] = useState(false);
 
     const handleLogout = async () => {
         try {
@@ -41,6 +42,10 @@ const Navbar: FC = () => {
             }
         }
     };
+    
+    const toggleAddAuction = () => {
+        setShowAddAuction(!showAddAuction)
+    }
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -81,13 +86,15 @@ const Navbar: FC = () => {
                                     </svg>
                                 </div>
                             </div>
-                            <div className="w-[56px] h-[56px] bg-[#F4FF47] p-[16px] rounded-[32px] gap-[4px]">
+                            <button 
+                            onClick={toggleAddAuction}
+                            className="w-[56px] h-[56px] bg-[#F4FF47] p-[16px] rounded-[32px] gap-[4px]">
                                 <div className="w-[24px] h-[24px] flex justify-center items-center">
                                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M14 8H8V14H6V8H0V6H6V0H8V6H14V8Z" fill="#071015" />
                                     </svg>
                                 </div>
-                            </div>
+                            </button>
                             <button
                                 onClick={toggleDropdown}
                                 className="w-[56px] h-[56px] rounded-[100px] overflow-hidden focus:outline-none"
@@ -132,6 +139,17 @@ const Navbar: FC = () => {
                                         style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }} // 30% opacity black
                                     >
                                         <ChangePassword onClose={() => setShowChangePassword(false)} />
+                                    </div>
+                                </div>
+                            )}
+
+                            {showAddAuction && (
+                                 <div>
+                                    <div
+                                        className="fixed inset-0 flex items-center justify-center z-50"
+                                        style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }} // 30% opacity black
+                                    >
+                                        <AddAuction onClose={() => setShowAddAuction(false)} />
                                     </div>
                                 </div>
                             )}
