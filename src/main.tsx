@@ -9,7 +9,7 @@ import AuthLayout from './components/layouts/AuthLayout.tsx'
 import ProtectedRoute from './routes/ProtectedRoute.tsx'
 import Home from './pages/Home.tsx'
 import MainLayout from './components/layouts/MainLayout.tsx'
-import ProfileSettings from './components/popups/ProfileSettings.tsx'
+import ProfileSettings from './components/popups/profile_modals/ProfileSettings.tsx'
 const router = createBrowserRouter([
   {
     path: '/',

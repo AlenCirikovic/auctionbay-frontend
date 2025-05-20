@@ -1,11 +1,11 @@
 import { useState, type FC } from "react";
 import { Link, useNavigate } from "react-router";
 import authStore from "../stores/auth.store";
-import ProfileDropdown from "./popups/ProfileDropdown";
+import ProfileDropdown from "./popups/profile_modals/ProfileDropdown";
 import axios from "axios";
-import ProfileSettings from "./popups/ProfileSettings";
-import ChangePassword from "./popups/ChangePassword";
-import ChangeAvatar from "./popups/ChangeAvatar";
+import ProfileSettings from "./popups/profile_modals/ProfileSettings";
+import ChangePassword from "./popups/profile_modals/ChangePassword";
+import ChangeAvatar from "./popups/profile_modals/ChangeAvatar";
 
 const Navbar: FC = () => {
     const navigate = useNavigate();
