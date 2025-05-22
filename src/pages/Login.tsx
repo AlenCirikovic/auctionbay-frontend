@@ -22,7 +22,7 @@ const Login: FC = () => {
                 setShowError(true)
             } else {
                 authStore.login(response.data)
-                navigate('/')
+                navigate('/auctions')
             }
         } catch (error) {
             if (axios.isAxiosError(error)) {

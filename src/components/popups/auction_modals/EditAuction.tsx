@@ -1,13 +1,10 @@
-type AddAuctionProps = {
+type EditAuctionProps = {
     onClose: () => void;
 }
 
 
-const AddAuction = ({onClose} : AddAuctionProps) => {
-     
-
-
-    return (
+const EditAuction = ({onClose} : EditAuctionProps) => { 
+ return (
         <>
             <form className="flex flex-col w-[533px] h-fit p-[16px] rounded-[16px] gap-[16px] bg-white">
                 <div className="flex justify-start items-center w-full h-fit gap-[16px]">
@@ -45,10 +42,10 @@ const AddAuction = ({onClose} : AddAuctionProps) => {
 
                 <div className="flex justify-end items-center w-full h-[40px] gap-[16px]">
                     <div className="w-[85px] h-[40px] min-[40px] rounded-[16px] pt-[8px] pr-[16px] pb-[8px] pl-[16px] gap-[8px] bg-[#EDF4F2]">
-                        <button onClick={onClose} className="font-medium text-[16px] leading-[24px]">Cancel</button>
+                        <button onClick={onClose} className="font-medium text-[16px] leading-[24px]">Discard changes</button>
                     </div>
-                    <div className="w-[139px] h-[40px] min-[40px] rounded-[16px] pt-[8px] pr-[16px] pb-[8px] pl-[16px] gap-[8px] bg-[#F4FF47]">
-                        <button className="font-medium text-[16px] leading-[24px]">Save changes</button>
+                    <div className="w-[139px] h-[40px] min-[40px] rounded-[16px] pt-[8px] pr-[16px] pb-[8px] pl-[16px] gap-[8px] bg-[#272D2D]">
+                        <button className="font-medium text-[16px] text-white leading-[24px]">Edit auction</button>
                     </div>
                 </div>
             </form>
@@ -56,4 +53,4 @@ const AddAuction = ({onClose} : AddAuctionProps) => {
     )
 }
 
-export default AddAuction
+export default EditAuction
