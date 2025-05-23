@@ -8,7 +8,12 @@ import Register from './pages/Register.tsx'
 import AuthLayout from './components/layouts/AuthLayout.tsx'
 import Home from './pages/Home.tsx'
 import MainLayout from './components/layouts/MainLayout.tsx'
-import Auctions from './pages/Auctions.tsx'
+import Profile from './pages/profile/Profile.tsx'
+import Bidding from './pages/profile/Bidding.tsx'
+import MyAuctions from './pages/profile/MyAuctions.tsx'
+import Won from './pages/profile/Won.tsx'
+import AuctionPage from './pages/AuctionPage.tsx'
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -18,7 +23,12 @@ const router = createBrowserRouter([
         element: <MainLayout />,
         children: [
           { path: '/', element: <Home /> },
-          { path: '/auctions', element: <Auctions /> },
+          { path: '/auction/:id', element: <AuctionPage /> },
+          { path: '/profile', element: <Profile />, children: [
+            {path:'my-auctions', element:<MyAuctions/>},
+            {path:'bidding', element:<Bidding/>},
+            {path:'won',element:<Won/>},
+          ]},
 
         ],
       },

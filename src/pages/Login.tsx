@@ -13,7 +13,9 @@ const Login: FC = () => {
 
     const onSubmit = async (data: LoginUserFields) => {
         try {
-            const response = await axios.post('http://localhost:3000/auth/login', data)
+            const response = await axios.post('http://localhost:3000/auth/login', data,{
+                withCredentials: true
+            })
             if (response.data?.statusCode === 400) {
                 setApiError(response.data.message)
                 setShowError(true)
@@ -22,7 +24,7 @@ const Login: FC = () => {
                 setShowError(true)
             } else {
                 authStore.login(response.data)
-                navigate('/auctions')
+                navigate('/profile')
             }
         } catch (error) {
             if (axios.isAxiosError(error)) {
