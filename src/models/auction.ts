@@ -1,3 +1,4 @@
+import type { UserType } from "./auth"
 import type { BidType } from "./bid"
 
 export type AuctionType = {
@@ -10,6 +11,7 @@ export type AuctionType = {
     end_date: Date
     active: boolean
     authorId: string
+    author: UserType
     bids: BidType[]   
 
 }

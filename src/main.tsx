@@ -13,6 +13,7 @@ import Bidding from './pages/profile/Bidding.tsx'
 import MyAuctions from './pages/profile/MyAuctions.tsx'
 import Won from './pages/profile/Won.tsx'
 import AuctionPage from './pages/AuctionPage.tsx'
+import Auctions from './pages/Auctions.tsx'
 
 const router = createBrowserRouter([
   {
@@ -24,11 +25,14 @@ const router = createBrowserRouter([
         children: [
           { path: '/', element: <Home /> },
           { path: '/auction/:id', element: <AuctionPage /> },
-          { path: '/profile', element: <Profile />, children: [
-            {path:'my-auctions', element:<MyAuctions/>},
-            {path:'bidding', element:<Bidding/>},
-            {path:'won',element:<Won/>},
-          ]},
+          { path: 'auctions', element: <Auctions /> },
+          {
+            path: '/profile', element: <Profile />, children: [
+              { path: 'my-auctions', element: <MyAuctions /> },
+              { path: 'bidding', element: <Bidding /> },
+              { path: 'won', element: <Won /> },
+            ]
+          },
 
         ],
       },
