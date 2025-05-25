@@ -62,7 +62,6 @@ const MyAuctions = () => {
     }
 
     const handleDeleteAuction = async (auctionId: string, auctionTitle: string) => {
-        // Show confirmation dialog
         const confirmed = window.confirm(
             `Are you sure you want to delete the auction "${auctionTitle}"? This action cannot be undone.`
         );
@@ -75,7 +74,6 @@ const MyAuctions = () => {
                 withCredentials: true
             });
 
-            // Remove the deleted auction from the state
             setAc(prevAuctions => prevAuctions.filter(auction => auction.id !== auctionId));
 
             console.log('Auction deleted successfully');
@@ -100,7 +98,6 @@ const MyAuctions = () => {
     }
 
     const handleAuctionUpdated = () => {
-        // Refresh the auctions list after successful update
         fetchAuctions()
     }
 

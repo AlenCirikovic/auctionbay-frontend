@@ -17,7 +17,7 @@ const Won = () => {
         const end = new Date(endDate)
         const diffMs = end.getTime() - now.getTime()
         const diffHours = Math.ceil(diffMs / (1000 * 60 * 60))
-        return Math.max(diffHours, 0) // Avoid negative time
+        return Math.max(diffHours, 0) 
     }
 
     const getAuctionStatus = (auction: AuctionType): 'Done' | 'In Progress' | 'Winning' | 'Outbid' => {

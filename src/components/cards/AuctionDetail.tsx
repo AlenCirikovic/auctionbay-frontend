@@ -127,9 +127,8 @@ const AuctionDetail = ({ tag, time_left, auction }: AuctionDetailProps) => {
                                         <p className="font-light text-[16px] leading-[24px]">{new Date(bid.published_on).toLocaleString()}</p>
                                         <div className="flex h-fit w-fit rounded-[16px] pt-[6px] pr-[16px] pb-[6px] pl-[16px] gap-[4px] bg-[#F4FF47]">
                                             <p className="font-semibold text-[16px] leading-[120%]">{bid.offer}</p>
-                                            {/* SVG Icon */}
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="..." fill="black" />
+                                                <path d="M12.5 15.4167C10.4083 15.4167 8.6 14.2333 7.7 12.5H12.5V10.8333H7.15C7.10833 10.5583 7.08333 10.2833 7.08333 10C7.08333 9.71667 7.10833 9.44167 7.15 9.16667H12.5V7.5H7.7C8.6 5.76667 10.4167 4.58333 12.5 4.58333C13.8417 4.58333 15.075 5.075 16.025 5.89167L17.5 4.41667C16.175 3.225 14.4167 2.5 12.5 2.5C9.23333 2.5 6.46667 4.59167 5.43333 7.5H2.5V9.16667H5.05C5.01667 9.44167 5 9.71667 5 10C5 10.2833 5.01667 10.5583 5.05 10.8333H2.5V12.5H5.43333C6.46667 15.4083 9.23333 17.5 12.5 17.5C14.425 17.5 16.175 16.775 17.5 15.5833L16.0167 14.1083C15.075 14.925 13.85 15.4167 12.5 15.4167Z" fill="black" />
                                             </svg>
                                         </div>
                                     </div>
@@ -137,8 +136,8 @@ const AuctionDetail = ({ tag, time_left, auction }: AuctionDetailProps) => {
                             ) : (
                                 <div className="flex flex-col justify-center items-center w-full h-[513px] text-center gap-[8px]">
                                     <div className="">
-                                    <h1 className="font-semibold text-[18px] leading-[120%]">No bids yet!</h1>
-                                    <p className="font-light text-[16px] leading-[24px] text-[#74817F]">Place your bid to have a chance to get this item.</p>
+                                        <h1 className="font-semibold text-[18px] leading-[120%]">No bids yet!</h1>
+                                        <p className="font-light text-[16px] leading-[24px] text-[#74817F]">Place your bid to have a chance to get this item.</p>
                                     </div>
                                 </div>
                             )}

@@ -6,11 +6,10 @@ const Profile = () => {
     const navigate = useNavigate()
     const location = useLocation()
 
-    // Determine which tab is active based on the current path
     const getActiveTab = () => {
         if (location.pathname.includes("bidding")) return 2
         if (location.pathname.includes("won")) return 3
-        return 1 // default to "my-auctions"
+        return 1 
     }
 
     const activeTab = getActiveTab()

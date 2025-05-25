@@ -23,7 +23,6 @@ const ProfileSettings = ({ onClose, onChangePassword, onChangeAvatar }: ProfileS
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    // Load current user data when component mounts
     useEffect(() => {
         if (authStore.user) {
             setFormData({
@@ -66,10 +65,7 @@ const ProfileSettings = ({ onClose, onChangePassword, onChangeAvatar }: ProfileS
 
             console.log('User updated successfully:', response.data);
             
-            // Update the auth store with new user data if needed
-            // authStore.updateUser(response.data);
-            
-            // Close the modal after successful update
+
             onClose();
         } catch (error) {
             console.error('Error updating user:', error);

@@ -36,7 +36,6 @@ const AddAuction = ({ onClose }: AddAuctionProps) => {
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
-            // Validate file type
             const allowedTypes = ['image/png', 'image/jpg', 'image/jpeg'];
             if (!allowedTypes.includes(file.type)) {
                 setApiError('File must be a png, jpg or jpeg');
@@ -46,7 +45,6 @@ const AddAuction = ({ onClose }: AddAuctionProps) => {
 
             setSelectedImage(file);
             
-            // Create preview
             const reader = new FileReader();
             reader.onload = (e) => {
                 setImagePreview(e.target?.result as string);
@@ -84,7 +82,6 @@ const AddAuction = ({ onClose }: AddAuctionProps) => {
             return false;
         }
         
-        // Check if end date is in the future
         const endDate = new Date(formData.end_date);
         const now = new Date();
         if (endDate <= now) {
@@ -108,16 +105,14 @@ const AddAuction = ({ onClose }: AddAuctionProps) => {
 
         try {
 
-            // Prepare auction data to match your Prisma schema
             const auctionData = {
                 title: formData.title.trim(),
                 description: formData.description.trim(),
-                starting_price: parseInt(formData.starting_price), // Int as per schema
-                end_date: new Date(formData.end_date).toISOString(), // DateTime
-                active: true // Set active to true by default
+                starting_price: parseInt(formData.starting_price), 
+                end_date: new Date(formData.end_date).toISOString(), 
+                active: true 
             };
 
-            // Create auction
             const auctionResponse = await axios.post(
                 'http://localhost:3000/auction/me/auction',
                 auctionData,
@@ -129,7 +124,6 @@ const AddAuction = ({ onClose }: AddAuctionProps) => {
             const createdAuction = auctionResponse.data;
             console.log('Auction created:', createdAuction);
 
-            // Upload image if selected
             if (selectedImage && createdAuction.id) {
                 const formDataImage = new FormData();
                 formDataImage.append('image', selectedImage);
@@ -144,7 +138,6 @@ const AddAuction = ({ onClose }: AddAuctionProps) => {
                 console.log('Image uploaded successfully');
             }
 
-            // Success - close the modal
             onClose();
             
         } catch (error) {

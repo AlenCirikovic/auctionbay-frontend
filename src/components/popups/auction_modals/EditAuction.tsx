@@ -30,15 +30,12 @@ const EditAuction = ({ onClose, auction, onAuctionUpdated }: EditAuctionProps) =
     const [error, setError] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
-    // Get current auction image or default
     const currentImageUrl = auction.image 
         ? `http://localhost:3000/files/${auction.image}`
         : "images/Auctions.png";
 
-    // Load current auction data when component mounts
     useEffect(() => {
         if (auction) {
-            // Format end_date to YYYY-MM-DD for input[type="date"]
             const formatDate = (dateString: string | Date) => {
                 const date = new Date(dateString);
                 return date.toISOString().split('T')[0];
@@ -65,15 +62,13 @@ const EditAuction = ({ onClose, auction, onAuctionUpdated }: EditAuctionProps) =
         const file = event.target.files?.[0];
         if (!file) return;
 
-        // Validate file type
         const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg'];
         if (!allowedTypes.includes(file.type)) {
             setError('Please select a PNG, JPG, or JPEG file');
             return;
         }
 
-        // Validate file size (e.g., max 5MB)
-        const maxSize = 5 * 1024 * 1024; // 5MB in bytes
+        const maxSize = 5 * 1024 * 1024; 
         if (file.size > maxSize) {
             setError('File size must be less than 5MB');
             return;
@@ -82,7 +77,6 @@ const EditAuction = ({ onClose, auction, onAuctionUpdated }: EditAuctionProps) =
         setSelectedFile(file);
         setError(null);
 
-        // Create preview URL
         const reader = new FileReader();
         reader.onload = (e) => {
             setPreviewUrl(e.target?.result as string);
@@ -111,7 +105,6 @@ const EditAuction = ({ onClose, auction, onAuctionUpdated }: EditAuctionProps) =
         setError(null);
 
         try {
-            // First, update the auction data
             const updateData = {
                 ...formData,
                 end_date: new Date(formData.end_date).toISOString()
@@ -130,7 +123,6 @@ const EditAuction = ({ onClose, auction, onAuctionUpdated }: EditAuctionProps) =
 
             console.log('Auction updated successfully:', response.data);
 
-            // If there's a new image, upload it separately
             if (selectedFile) {
                 const imageFormData = new FormData();
                 imageFormData.append('image', selectedFile);
@@ -149,10 +141,8 @@ const EditAuction = ({ onClose, auction, onAuctionUpdated }: EditAuctionProps) =
                 console.log('Auction image updated successfully:', imageResponse.data);
             }
 
-            // Notify parent component that auction was updated
             onAuctionUpdated();
             
-            // Close the modal after successful update
             onClose();
         } catch (error) {
             console.error('Error updating auction:', error);
@@ -187,7 +177,6 @@ const EditAuction = ({ onClose, auction, onAuctionUpdated }: EditAuctionProps) =
                     </div>
                 )}
 
-                {/* Image Upload Section */}
                 <div className="flex justify-center items-center w-full h-[168px] rounded-[16px] p-[32px] gap-[8px] border border-gray-200">
                     {(previewUrl || auction.image) ? (
                         <div className="flex flex-col items-center gap-4">
@@ -217,7 +206,6 @@ const EditAuction = ({ onClose, auction, onAuctionUpdated }: EditAuctionProps) =
                     )}
                 </div>
 
-                {/* Hidden file input */}
                 <input
                     ref={fileInputRef}
                     type="file"
@@ -289,7 +277,7 @@ const EditAuction = ({ onClose, auction, onAuctionUpdated }: EditAuctionProps) =
                             onChange={handleInputChange}
                             required
                             disabled={isLoading}
-                            min={new Date().toISOString().split('T')[0]} // Prevent selecting past dates
+                            min={new Date().toISOString().split('T')[0]} 
                         />
                     </div>
                 </div>

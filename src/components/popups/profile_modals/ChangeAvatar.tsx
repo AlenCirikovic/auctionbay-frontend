@@ -13,7 +13,6 @@ const ChangeAvatar = ({ onClose }: ChangeAvatarProps) => {
     const [error, setError] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
-    // Get current user avatar or default
     const currentAvatarUrl = authStore.user?.avatar 
         ? `http://localhost:3000/files/${authStore.user.avatar}`
         : "images/default_avatar.jpg";
@@ -22,15 +21,13 @@ const ChangeAvatar = ({ onClose }: ChangeAvatarProps) => {
         const file = event.target.files?.[0];
         if (!file) return;
 
-        // Validate file type
         const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg'];
         if (!allowedTypes.includes(file.type)) {
             setError('Please select a PNG, JPG, or JPEG file');
             return;
         }
 
-        // Validate file size (e.g., max 5MB)
-        const maxSize = 5 * 1024 * 1024; // 5MB in bytes
+        const maxSize = 5 * 1024 * 1024; 
         if (file.size > maxSize) {
             setError('File size must be less than 5MB');
             return;
@@ -39,7 +36,6 @@ const ChangeAvatar = ({ onClose }: ChangeAvatarProps) => {
         setSelectedFile(file);
         setError(null);
 
-        // Create preview URL
         const reader = new FileReader();
         reader.onload = (e) => {
             setPreviewUrl(e.target?.result as string);
@@ -66,7 +62,6 @@ const ChangeAvatar = ({ onClose }: ChangeAvatarProps) => {
         setError(null);
 
         try {
-            // Create FormData for file upload
             const formData = new FormData();
             formData.append('avatar', selectedFile);
 
@@ -82,10 +77,7 @@ const ChangeAvatar = ({ onClose }: ChangeAvatarProps) => {
 
             console.log('Avatar updated successfully:', response.data);
             
-            // Update the auth store with new user data if needed
-            // authStore.updateUser(response.data);
-            
-            // Close the modal after successful update
+
             onClose();
         } catch (error) {
             console.error('Error updating avatar:', error);
@@ -100,7 +92,6 @@ const ChangeAvatar = ({ onClose }: ChangeAvatarProps) => {
     };
 
     const handleCancel = () => {
-        // Reset state
         setSelectedFile(null);
         setPreviewUrl(null);
         setError(null);
@@ -138,7 +129,6 @@ const ChangeAvatar = ({ onClose }: ChangeAvatarProps) => {
                         </div>
                     )}
 
-                    {/* Hidden file input */}
                     <input
                         ref={fileInputRef}
                         type="file"

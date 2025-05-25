@@ -13,12 +13,12 @@ type AuctionCardType = {
 const AuctionCard = ({ onClickNavigate, auction, tag, timeLeft, onEdit, onDelete }: AuctionCardType) => {
     
     const handleEditClick = (e: React.MouseEvent) => {
-        e.stopPropagation(); // Prevent navigation when clicking edit
+        e.stopPropagation(); 
         onEdit();
     };
 
     const handleDeleteClick = (e: React.MouseEvent) => {
-        e.stopPropagation(); // Prevent navigation when clicking delete
+        e.stopPropagation(); 
         onDelete();
     };
 

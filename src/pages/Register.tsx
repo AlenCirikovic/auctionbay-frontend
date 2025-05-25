@@ -60,7 +60,6 @@ const Register: FC = () => {
                         name="name"
                         control={control}
                         render={({ field }) => {
-                          // Handle null value
                           const value = field.value ?? "";
                           return (
                             <input
