@@ -39,8 +39,8 @@ const Register: FC = () => {
       <div className="flex flex-row w-[1440px] h-[1024px] top-[1364px] left-[192px] justify-center">
         <img className="w-[968px] h-[1024px]" src="images/register-login-page.png" alt="RegisterPic" />
 
-        <div className="flex flex-col h-[1024px] w-[472px] gap-[8px] pt-[64px] pr-[32px] pb-[64px] pl-[32px] rounded-[32px] justify-between items-center">
-          <div className="w-[64px] h-[64px] gap-[32px]">
+        <div className="flex flex-col h-[1024px] w-[472px] gap-[8px] pt-[64px] pr-[32px] pb-[64px] pl-[32px] rounded-[32px] justify-center items-center">
+          <div className="w-[64px] h-[64px] gap-[32px] mb-[100px]">
             <img className="w-[64px] h-[64px]" src="logotypes/logo.png" alt="Logotip" />
           </div>
 
